@@ -62,7 +62,7 @@ export default defineComponent({
           })
         }
 
-        searchItems.value = res.data
+        searchItems.value = res
       } catch (error) {
         console.error(error)
       } finally {
@@ -77,10 +77,10 @@ export default defineComponent({
       isLoading.value = true
 
       try {
-        const { data } = await props.repository.index({
+        const res = await props.repository.index({
           params: { take: 1000 },
         })
-        allItems.value = data
+        allItems.value = res
       } catch (error) {
         console.error(error)
       } finally {

@@ -38,6 +38,9 @@
           <template #default="{ item }">
             <v-tabs v-model="tab" :height="35" class="mb-4" align-with-title>
               <v-tab>Информация</v-tab>
+              <v-tab>Даты</v-tab>
+              <v-tab>Словари</v-tab>
+
               <v-tab>Двигатель</v-tab>
               <v-tab>Распределение</v-tab>
               <v-tab>Паспорт</v-tab>
@@ -81,6 +84,50 @@
                   :height="40"
                   placeholder="inventory_number"
                 /> -->
+                </form-item>
+
+                <form-item
+                  v-for="setting in stringSettings"
+                  :key="setting.value"
+                  :label="setting.title"
+                >
+                  <flag-text-field
+                    v-model="item[setting.value]"
+                    :height="40"
+                    :placeholder="setting.title"
+                  />
+                </form-item>
+              </v-tab-item>
+              <v-tab-item>
+                <form-item
+                  v-for="setting in dateSettings"
+                  :key="setting.value"
+                  :label="setting.title"
+                >
+                  <date-picker
+                    v-model="item[setting.value]"
+                    :placeholder="setting.title"
+                  />
+                </form-item>
+              </v-tab-item>
+
+              <v-tab-item>
+                <form-item
+                  v-for="setting in dictionarySettings"
+                  :key="setting.value"
+                  :label="setting.title"
+                >
+                  <flag-select
+                    v-model="item[setting.value]"
+                    is-server-items-load
+                    is-repository-function
+                    :repository="$vehiclesDictionaryRepository[setting.value]"
+                  />
+
+                  <!-- <date-picker
+                    v-model="item[setting.value]"
+                    :placeholder="setting.title"
+                  /> -->
                 </form-item>
               </v-tab-item>
 
@@ -130,6 +177,7 @@
 <script>
 import createEditSheet from '@/modules/CRUD/components/createEditSheet.vue'
 import GeneralListPage from '@/modules/CRUD/components/GeneralListPage.vue'
+import DatePicker from '@/components/filters/DatePicker.vue'
 
 import FormItem from '@/modules/CRUD/components/FormItem.vue'
 
@@ -141,6 +189,7 @@ export default {
     createEditSheet,
     GeneralListPage,
     FormItem,
+    DatePicker,
   },
 
   data() {
@@ -179,6 +228,128 @@ export default {
           value: 'counter',
         },
       ],
+
+      stringSettings: [
+        {
+          title: 'Номер Шасси',
+          value: 'chass_number',
+        },
+        {
+          title: 'Номер Кузова',
+          value: 'body_number',
+        },
+        {
+          title: 'Балансовая стоимость',
+          value: 'cost',
+        },
+        {
+          title: 'Номер Фондового извещения',
+          value: 'source_number',
+        },
+        {
+          title: 'Месячная норма пробега',
+          value: 'mileage_rate',
+        },
+        {
+          title: 'Норма расхода топлива на 100 км',
+          value: 'fuel_rate',
+        },
+        {
+          title: 'Идентификационный номер',
+          value: 'id_number',
+        },
+        {
+          title: 'Базовая норма расхода топлива',
+          value: 'base_rate',
+        },
+      ],
+      dateSettings: [
+        {
+          title: 'Дата действия страхавого полиса',
+          value: 'trust_date',
+        },
+        {
+          title: 'Дата действия технического осмотра',
+          value: 'to_date',
+        },
+        {
+          title: 'Дата выдачи номерного знака',
+          value: 'sign_date',
+        },
+        {
+          title: 'Дата ввода в эксплутацию',
+          value: 'exploitation_date',
+        },
+        {
+          title: 'Дата документа',
+          value: 'source_date',
+        },
+        {
+          title: 'Дата передачи в подразделение',
+          value: 'transfer_date',
+        },
+        {
+          title: 'Дата списания',
+          value: 'del_date',
+        },
+      ],
+      dictionarySettings: [
+        {
+          title: 'Склад',
+          value: 'warehouse',
+        },
+        {
+          title: 'Источник получения',
+          value: 'source',
+        },
+        {
+          title: 'Служба эксплутации',
+          value: 'service',
+        },
+        {
+          title: 'Цвет автомобиля',
+          value: 'color',
+        },
+        {
+          title: 'Класс автомобиля',
+          value: 'vehicle_class',
+        },
+        {
+          title: 'Штатная группа',
+          value: 'group',
+        },
+        {
+          title: 'Марка',
+          value: 'brand',
+        },
+        {
+          title: 'Завод-Изготовитель',
+          value: 'manufacturer',
+        },
+        {
+          title: 'Тип транспорта',
+          value: 'type',
+        },
+      ],
+
+      // identifier_fuel_rate	integer
+      // title: Инд. процент баз. нормы расхода топлива
+      // maximum: 999
+
+      // category	string
+      // title: Категория автомобиля
+      //  Enum:
+      // Array [ 4 ]
+
+      // body	integer
+      // title: Тип Кузова
+
+      // subdivision	integer
+      // title: Подразделение-владелец транспорта
+
+      // climate_control	boolean
+      // title: Наличие системы Климат контроль
+
       defaultVehicle: () => ({
         engine: {
           number: '',
@@ -192,6 +363,14 @@ export default {
         year: '',
         gov_number: '',
         fuel_type: null,
+
+        chass_number: '',
+        body_number: '',
+        cost: '',
+        source_number: '',
+        mileage_rate: '',
+        id_number: '',
+        base_rate: '',
       }),
     }
   },

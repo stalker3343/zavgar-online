@@ -1,22 +1,11 @@
 <template>
   <div>
-    <div class="filters-layout mb-3">
-      <flag-text-field
-        v-model="filters.vehicle"
-        :height="40"
-        placeholder="vehicle"
-      />
-      <flag-text-field
-        v-model="filters.date_after"
-        :height="40"
-        placeholder="date_after"
-      />
-      <flag-text-field
-        v-model="filters.date_before"
-        :height="40"
-        placeholder="date_before"
-      />
-    </div>
+    <filters-layout class="mb-3">
+      <vehicles-filter v-model="filters.vehicle" multiple />
+      <date-picker v-model="filters.date_after" placeholder="date_after" />
+      <date-picker v-model="filters.date_before" placeholder="date_before" />
+    </filters-layout>
+
     <div class="d-flex">
       <flag-btn color="primary" @click="onApplyFilters"> Показать </flag-btn>
       <flag-btn @click="resetFilters"> Сброс </flag-btn>
@@ -115,9 +104,12 @@ import GeneralListPage from '@/modules/CRUD/components/GeneralListPage.vue'
 import fueldDetails from '@/components/fueling/fueldDetails.vue'
 
 import FormItem from '@/modules/CRUD/components/FormItem.vue'
+import VehiclesFilter from '@/components/filters/VehiclesFilter.vue'
+import DatePicker from '@/components/filters/DatePicker.vue'
+import FiltersLayout from '@/components/filters/FiltersLayout.vue'
 
 const getDefaultFilters = () => ({
-  vehicle: '',
+  vehicle: [],
   date_after: '',
   date_before: '',
 })
@@ -127,6 +119,9 @@ export default {
     GeneralListPage,
     FormItem,
     fueldDetails,
+    VehiclesFilter,
+    DatePicker,
+    FiltersLayout,
   },
 
   data() {
@@ -195,10 +190,5 @@ export default {
 
   border-radius: 10px;
   padding: 10px 20px;
-}
-
-.filters-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 </style>

@@ -3,8 +3,66 @@ import createRepository from '@/api/repository'
 export default function ({ $axios }, inject) {
   const repositoryWithAxios = createRepository($axios)
 
+  inject('vehiclesDictionaryRepository', {
+    // warehouse	integer
+    // title: Склад
+    warehouse() {
+      return $axios.$get(`/api/vehicles/warehouses/`)
+    },
+
+    // source	integer
+    // title: Источник получения
+    source() {
+      return $axios.$get(`/api/vehicles/sources/`)
+    },
+    // service	integer
+    // title: Служба эксплутации
+    service() {
+      return $axios.$get(`/api/vehicles/services/`)
+    },
+    // color	integer
+    // title: Цвет автомобиля
+    color() {
+      return $axios.$get(`api/vehicles/colors/`)
+    },
+    // ОСОБЕ ВНИМАНИ ЭТО classes
+    // vehicle_class	integer
+    // title: Класс автомобиля
+    vehicle_class() {
+      return $axios.$get(`/api/vehicles/classes/`)
+    },
+    // group	integer
+    // title: Штатная группа
+    group() {
+      return $axios.$get(`/api/vehicles/groups/`)
+    },
+    // brand	integer
+    // title: Марка
+    brand() {
+      return $axios.$get(`/api/vehicles/brands/`)
+    },
+    // manufacturer	integer
+    // title: Завод-Изготовитель
+    manufacturer() {
+      return $axios.$get(`/api/vehicles/manufacturers/`)
+    },
+    // type	integer
+    // title: Тип транспорта
+    type() {
+      return $axios.$get(`/api/vehicles/types/`)
+    },
+  })
+
   inject('fuelTypesRepository', {
     ...repositoryWithAxios('/api/vehicles/fuel-types/'),
+  })
+
+  inject('brandsTypesRepository', {
+    ...repositoryWithAxios('/api/vehicles/brands/'),
+  })
+
+  inject('groupsTypesRepository', {
+    ...repositoryWithAxios('/api/vehicles/groups/'),
   })
 
   inject('vehiclesRepository', {

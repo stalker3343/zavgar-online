@@ -48,7 +48,7 @@ export default {
     },
     repository: {
       default: null,
-      type: Object,
+      type: [Object, Function],
     },
     isServerItemsLoad: {
       type: Boolean,
@@ -61,6 +61,10 @@ export default {
     itemText: {
       type: String,
       default: 'name',
+    },
+    isRepositoryFunction: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -166,9 +170,17 @@ export default {
       this.innerLoading = true
 
       try {
-        const data = await this.repository.index({
-          params: { take: 1000 },
-        })
+        let data = null
+        if (this.isRepositoryFunction) {
+          data = await this.repository({
+            params: { take: 1000 },
+          })
+        } else {
+          data = await this.repository.index({
+            params: { take: 1000 },
+          })
+        }
+
         this.loadedItems = data
         this.isItemsLoaded = true
       } catch (error) {

@@ -32,6 +32,11 @@
 
       <v-spacer />
       <v-list>
+        <v-list-item exact :to="{ name: 'index' }">
+          <v-list-item-content>
+            <v-list-item-title> Главная</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <!-- prepend-icon="mdi-account-circle" -->
         <v-list-group :value="true">
           <template #activator>

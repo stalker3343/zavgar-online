@@ -84,6 +84,7 @@ export default {
       this.$refs.form.validate()
       if (!this.isFormValid) return
       if (this.itemId) {
+        delete this.item.avatar
         const res = await this.$refs.formWrapper.makeRequest(
           async () => await this.repository.update(this.itemId, this.item)
         )

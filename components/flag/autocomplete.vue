@@ -23,7 +23,6 @@
             :loading="isLoading"
             :item-text="itemText"
             hide-details="auto"
-            return-object
             :value="value"
             v-bind="bindedAttrs"
             no-data-text="Нет данных"
