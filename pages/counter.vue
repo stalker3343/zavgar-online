@@ -22,7 +22,7 @@
       <flag-btn @click="resetFilters"> Сброс </flag-btn>
     </div>
     <!-- eslint-disable vue/valid-v-slot  -->
-
+    <!--  show-details -->
     <general-list-page
       ref="generalListPage"
       :filters="filters"
@@ -30,7 +30,6 @@
       :headers="headers"
       show-create
       show-edit
-      show-details
       :repository="$countersRepository"
     >
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
@@ -43,9 +42,9 @@
           @success-edit="onSuccesDataUpdate"
         >
           <template #default="{ item }">
-            <form-item label="vehicle">
+            <form-item label="vehicle_id">
               <flag-select
-                v-model="item.vehicle"
+                v-model="item.vehicle_id"
                 item-text="inventory_number"
                 is-server-items-load
                 :repository="$vehiclesRepository"
@@ -105,6 +104,10 @@ export default {
 
       headers: [
         {
+          text: 'ТС',
+          value: 'vehicle.inventory_number',
+        },
+        {
           text: 'Дата',
           value: 'date',
         },
@@ -120,7 +123,7 @@ export default {
       defaultVehicle: () => ({
         date: null,
         value: null,
-        vehicle: null,
+        vehicle_id: null,
       }),
     }
   },

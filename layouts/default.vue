@@ -32,6 +32,30 @@
 
       <v-spacer />
       <v-list>
+        <!-- prepend-icon="mdi-account-circle" -->
+        <v-list-group :value="true">
+          <template #activator>
+            <v-list-item-title>Автопарк</v-list-item-title>
+          </template>
+
+          <v-list-item :to="{ name: 'vehicles' }" link>
+            <v-list-item-title class="pl-6"> Список ТС </v-list-item-title>
+
+            <!-- <v-list-item-icon>
+              <v-icon v-text="icon" />
+            </v-list-item-icon> -->
+          </v-list-item>
+          <v-list-item :to="{ name: 'counter' }" link>
+            <v-list-item-title class="pl-6">
+              История показаний
+            </v-list-item-title>
+
+            <!-- <v-list-item-icon>
+              <v-icon v-text="icon" />
+            </v-list-item-icon> -->
+          </v-list-item>
+        </v-list-group>
+
         <v-list-item exact :to="{ name: 'fueling' }">
           <v-list-item-content>
             <v-list-item-title> Заправки</v-list-item-title>
@@ -47,28 +71,6 @@
             <v-list-item-title> Настройки</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-
-        <!-- prepend-icon="mdi-account-circle" -->
-        <v-list-group>
-          <template #activator>
-            <v-list-item-title>Автопарк</v-list-item-title>
-          </template>
-
-          <v-list-item :to="{ name: 'vehicles' }" link>
-            <v-list-item-title> Список ТС </v-list-item-title>
-
-            <!-- <v-list-item-icon>
-              <v-icon v-text="icon" />
-            </v-list-item-icon> -->
-          </v-list-item>
-          <v-list-item :to="{ name: 'counter' }" link>
-            <v-list-item-title> История показаний </v-list-item-title>
-
-            <!-- <v-list-item-icon>
-              <v-icon v-text="icon" />
-            </v-list-item-icon> -->
-          </v-list-item>
-        </v-list-group>
       </v-list>
     </v-navigation-drawer>
 

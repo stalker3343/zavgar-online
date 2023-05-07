@@ -9,6 +9,13 @@ export default function ({ $axios }, inject) {
 
   inject('vehiclesRepository', {
     ...repositoryWithAxios('/api/vehicles/'),
+    history(id) {
+      return $axios.$get(`/api/vehicles/${id}/history/`)
+    },
+  })
+
+  inject('vehiclesHistoryRepository', {
+    ...repositoryWithAxios(''),
   })
 
   inject('fuelingRepository', {
