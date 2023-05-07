@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="filters-layout mb-3">
-      <flag-text-field
+      <vehicles-filter v-model="filters.inventory_number" />
+      <!-- <flag-text-field
         v-model="filters.inventory_number"
         :height="40"
-        placeholder="inventory_number"
-      />
+       
+      /> -->
     </div>
     <div class="d-flex">
       <flag-btn color="primary" @click="onApplyFilters"> Показать </flag-btn>
@@ -178,6 +179,7 @@
 import createEditSheet from '@/modules/CRUD/components/createEditSheet.vue'
 import GeneralListPage from '@/modules/CRUD/components/GeneralListPage.vue'
 import DatePicker from '@/components/filters/DatePicker.vue'
+import VehiclesFilter from '@/components/filters/VehiclesFilter.vue'
 
 import FormItem from '@/modules/CRUD/components/FormItem.vue'
 
@@ -190,6 +192,7 @@ export default {
     GeneralListPage,
     FormItem,
     DatePicker,
+    VehiclesFilter,
   },
 
   data() {
