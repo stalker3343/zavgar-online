@@ -11,6 +11,10 @@ export default function ({ $axios }, inject) {
     ...repositoryWithAxios('/api/vehicles/'),
   })
 
+  inject('fuelingRepository', {
+    ...repositoryWithAxios('/api/fueling/'),
+  })
+
   inject('usersRepository', {
     ...repositoryWithAxios('/api/users'),
     index() {

@@ -9,7 +9,7 @@
     hide-details="auto"
     outlined
     item-color="#000"
-    item-text="name"
+    :item-text="itemText"
     item-value="id"
     v-on="$listeners"
     @focus="onFocus"
@@ -57,6 +57,10 @@ export default {
     loading: {
       type: Boolean,
       default: false,
+    },
+    itemText: {
+      type: String,
+      default: 'name',
     },
   },
   data() {
@@ -146,12 +150,13 @@ export default {
       return rules
     },
   },
-  created() {
+  async created() {
     if ('multiple' in this.$attrs && this.$attrs.height) {
       console.error(
         'Вы задали фиксированную высоту для Autocomplete при множественном выборе. Это плохо скажется на UI'
       )
     }
+    if (this.isServerItemsLoad) await this.loadAllItems()
   },
   methods: {
     async loadAllItems() {

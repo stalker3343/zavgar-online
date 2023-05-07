@@ -7,7 +7,7 @@
       <v-row v-if="showCreate">
         <v-col class="d-flex" cols="12">
           <v-spacer />
-          <flag-btn color="primary-main" @click="isCreateEditSheetOpen = true">
+          <flag-btn color="primary" @click="isCreateEditSheetOpen = true">
             <v-icon>mdi-plus</v-icon>
             Создать
           </flag-btn>
@@ -33,15 +33,20 @@
                   :hide-default-footer="true"
                   :items="items"
                   :headers="innerActions"
-                  @click:row="$emit('click-row', $event)"
                 >
                   <template #item.actions="{ item }">
                     <slot name="actions" :item="item" />
-
+                    <v-icon
+                      v-if="showDetails"
+                      class="mr-2"
+                      @click="onShowDetails(item)"
+                    >
+                      mdi-eye
+                    </v-icon>
                     <v-icon
                       v-if="showEdit"
                       class="mr-2"
-                      @click.stop="onEditItem(item)"
+                      @click="onEditItem(item)"
                     >
                       mdi-pencil
                     </v-icon>
@@ -67,11 +72,28 @@
         :on-succes-data-update="onSuccesDataUpdate"
       />
     </flag-right-sheet>
+
+    <entity-details-dialog
+      v-if="isDetailsModalOpen"
+      :item-id="editedUserId"
+      header-title="Детали"
+      :repository="repository"
+      @close-modal="isDetailsModalOpen = false"
+    >
+      <template #default="{ item }">
+        <slot :item="item" name="details-modal" />
+      </template>
+    </entity-details-dialog>
   </div>
 </template>
 
 <script>
+import EntityDetailsDialog from './EntityDetailsDialog.vue'
+
 export default {
+  components: {
+    EntityDetailsDialog,
+  },
   props: {
     headers: {
       type: Array,
@@ -93,6 +115,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showDetails: {
+      type: Boolean,
+      default: false,
+    },
     filters: {
       type: Object,
       default: () => ({}),
@@ -105,6 +131,8 @@ export default {
       selected: [],
       isCreateEditSheetOpen: false,
       editedUserId: null,
+
+      isDetailsModalOpen: false,
     }
   },
   fetchOnServer: false,
@@ -127,6 +155,9 @@ export default {
   },
   watch: {
     isCreateEditSheetOpen(vall) {
+      if (!vall) this.editedUserId = null
+    },
+    isDetailsModalOpen(vall) {
       if (!vall) this.editedUserId = null
     },
   },
@@ -161,6 +192,14 @@ export default {
     },
     applyFilters() {
       this.$fetch()
+    },
+    onShowDetails(item) {
+      this.$emit('details-click', item)
+
+      if (this.$scopedSlots['details-modal']) {
+        this.editedUserId = item.id
+        this.isDetailsModalOpen = true
+      }
     },
   },
 }

@@ -62,6 +62,6 @@ export default defineComponent({
 }
 .icis-dropdown-item__icon {
   margin-right: 8px;
-  color: var(--v-primary-main-base);
+  color: var(--v-primary-base);
 }
 </style>

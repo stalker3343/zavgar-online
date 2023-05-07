@@ -20,8 +20,11 @@
       :headers="headers"
       show-create
       show-edit
+      show-details
       :repository="$vehiclesRepository"
-      @click-row="onClickVehicle"
+      @details-click="
+        $router.push({ name: 'vehicles-id', params: { id: $event.id } })
+      "
     >
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
@@ -127,6 +130,7 @@
 <script>
 import createEditSheet from '@/modules/CRUD/components/createEditSheet.vue'
 import GeneralListPage from '@/modules/CRUD/components/GeneralListPage.vue'
+
 import FormItem from '@/modules/CRUD/components/FormItem.vue'
 
 const getDefaultFilters = () => ({

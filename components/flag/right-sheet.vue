@@ -106,7 +106,7 @@ export default defineComponent({
   position: absolute;
   top: 8px;
   left: -40px;
-  background-color: var(--v-dark-white-base);
+  background-color: #fff;
   border-radius: 12px;
   @include flex(row, center, center);
 }
@@ -117,7 +117,7 @@ export default defineComponent({
   position: absolute;
   top: 46px;
   left: -40px;
-  background-color: var(--v-dark-white-base);
+  background-color: #fff;
   border-radius: 12px;
   @include flex(row, center, center);
 }

@@ -77,7 +77,7 @@ export default {
 
   &[aria-expanded='true'] {
     background-color: var(--v-primary-dark-base) !important;
-    color: var(--v-dark-white-base);
+    color: #fff;
   }
 }
 .gl-icon {

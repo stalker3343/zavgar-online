@@ -29,7 +29,7 @@
             >
               Отмена
             </flag-btn>
-            <flag-btn :loading="isLoading" color="primary-main" @click="onSave">
+            <flag-btn :loading="isLoading" color="primary" @click="onSave">
               Сохранить
             </flag-btn>
           </div>

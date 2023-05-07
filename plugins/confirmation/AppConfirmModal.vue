@@ -13,7 +13,7 @@
       >
         {{ modalOptions.rejectBtnText }}
       </flag-btn>
-      <flag-btn large color="primary-main" @click="sendResponse(true)">
+      <flag-btn large color="primary" @click="sendResponse(true)">
         {{ modalOptions.confirmBtnText }}
       </flag-btn>
     </div>

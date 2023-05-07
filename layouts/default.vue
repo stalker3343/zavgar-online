@@ -32,20 +32,36 @@
 
       <v-spacer />
       <v-list>
-        <v-list-item
-          v-for="link in links"
-          :key="link.name"
-          exact
-          :to="{ name: link.name }"
-        >
-          <v-list-item-icon>
-            <v-icon>{{ link.icon }}</v-icon>
-          </v-list-item-icon>
-
+        <v-list-item exact :to="{ name: 'fueling' }">
           <v-list-item-content>
-            <v-list-item-title> {{ link.text }}</v-list-item-title>
+            <v-list-item-title> Заправки</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <v-list-item exact :to="{ name: 'settings' }">
+          <!-- <v-list-item-icon>
+            <v-icon>{{ link.icon }}</v-icon>
+          </v-list-item-icon> -->
+
+          <v-list-item-content>
+            <v-list-item-title> Настройки</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <!-- prepend-icon="mdi-account-circle" -->
+        <v-list-group>
+          <template #activator>
+            <v-list-item-title>Автопарк</v-list-item-title>
+          </template>
+
+          <v-list-item :to="{ name: 'vehicles' }" link>
+            <v-list-item-title> Список ТС </v-list-item-title>
+
+            <!-- <v-list-item-icon>
+              <v-icon v-text="icon" />
+            </v-list-item-icon> -->
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
 
@@ -96,10 +112,11 @@ export default {
   data: () => ({
     links: [
       {
-        name: 'fuel-types',
+        name: 'settings',
         icon: 'mdi-account-multiple-outline',
-        text: 'Типы топлива',
+        text: 'Настройки',
       },
+
       {
         name: 'vehicles',
         icon: 'mdi-account-multiple-outline',
