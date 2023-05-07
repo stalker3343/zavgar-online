@@ -50,7 +50,7 @@
                     >
                       mdi-pencil
                     </v-icon>
-                    <v-icon @click.stop="onDeleteItem(item)">
+                    <v-icon v-if="showDelete" @click.stop="onDeleteItem(item)">
                       mdi-delete
                     </v-icon>
                   </template>
@@ -118,6 +118,10 @@ export default {
     showDetails: {
       type: Boolean,
       default: false,
+    },
+    showDelete: {
+      type: Boolean,
+      default: true,
     },
     filters: {
       type: Object,

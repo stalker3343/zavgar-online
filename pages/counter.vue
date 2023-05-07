@@ -26,68 +26,29 @@
     <general-list-page
       ref="generalListPage"
       :filters="filters"
-      delete-confirm-text="Заправку"
+      delete-confirm-text="Счетчик"
       :headers="headers"
       show-create
       show-edit
       show-details
-      :repository="$fuelingRepository"
+      :repository="$countersRepository"
     >
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
           :item-id="editedItem"
-          header-title="Заправка"
-          :repository="$fuelingRepository"
+          header-title="Счетчик"
+          :repository="$countersRepository"
           :get-default-item="defaultVehicle"
           @success-create="onSuccesDataUpdate"
           @success-edit="onSuccesDataUpdate"
         >
           <template #default="{ item }">
-            <form-item label="vehicle_id">
+            <form-item label="vehicle">
               <flag-select
-                v-model="item.vehicle_id"
+                v-model="item.vehicle"
                 item-text="inventory_number"
                 is-server-items-load
                 :repository="$vehiclesRepository"
-              />
-            </form-item>
-            <form-item label="fuel_type">
-              <flag-select
-                v-model="item.fuel_type"
-                is-server-items-load
-                :repository="$fuelTypesRepository"
-              />
-            </form-item>
-
-            <form-item label="counter">
-              <flag-text-field
-                v-model="item.counter.value"
-                :height="40"
-                placeholder="counter"
-              />
-            </form-item>
-
-            <form-item label="price">
-              <flag-text-field
-                v-model="item.price"
-                :height="40"
-                placeholder="price"
-              />
-            </form-item>
-
-            <form-item label="summ">
-              <flag-text-field
-                v-model="item.summ"
-                :height="40"
-                placeholder="summ"
-              />
-            </form-item>
-
-            <form-item label="liters">
-              <flag-text-field
-                v-model="item.liters"
-                :height="40"
-                placeholder="liters"
               />
             </form-item>
 
@@ -96,6 +57,14 @@
                 v-model="item.date"
                 :height="40"
                 placeholder="date"
+              />
+            </form-item>
+
+            <form-item label="value">
+              <flag-text-field
+                v-model="item.value"
+                :height="40"
+                placeholder="value"
               />
             </form-item>
           </template>
@@ -136,39 +105,22 @@ export default {
 
       headers: [
         {
-          text: 'ТС',
-          value: 'vehicle.inventory_number',
-        },
-        {
           text: 'Дата',
           value: 'date',
         },
         {
-          text: 'Счетчик',
-          value: 'counter.value',
+          text: 'значение',
+          value: 'value',
         },
         {
-          text: 'Километраж',
-          value: 'vehicle.counter',
-        },
-        {
-          text: 'обьем',
-          value: 'liters',
-        },
-
-        {
-          text: 'Стоимость',
-          value: 'summ',
+          text: 'тип',
+          value: 'type',
         },
       ],
       defaultVehicle: () => ({
-        vehicle_id: null,
-        counter: { value: null },
-        fuel_type: null,
-        price: null,
-        summ: null,
-        liters: null,
         date: null,
+        value: null,
+        vehicle: null,
       }),
     }
   },

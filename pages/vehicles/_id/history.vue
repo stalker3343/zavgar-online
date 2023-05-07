@@ -1,37 +1,15 @@
 <template>
   <div>
-    <div class="filters-layout mb-3">
-      <flag-text-field
-        v-model="filters.vehicle"
-        :height="40"
-        placeholder="vehicle"
-      />
-      <flag-text-field
-        v-model="filters.date_after"
-        :height="40"
-        placeholder="date_after"
-      />
-      <flag-text-field
-        v-model="filters.date_before"
-        :height="40"
-        placeholder="date_before"
-      />
-    </div>
-    <div class="d-flex">
-      <flag-btn color="primary" @click="onApplyFilters"> Показать </flag-btn>
-      <flag-btn @click="resetFilters"> Сброс </flag-btn>
-    </div>
     <!-- eslint-disable vue/valid-v-slot  -->
 
     <general-list-page
       ref="generalListPage"
-      :filters="filters"
       delete-confirm-text="Заправку"
       :headers="headers"
       show-create
       show-edit
       show-details
-      :repository="$fuelingRepository"
+      :repository="customeFueling"
     >
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
@@ -103,7 +81,51 @@
       </template>
 
       <template #details-modal="{ item }">
-        <fueld-details :item="item" />
+        <div class="d-flex align-center">
+          <img style="width: 70px" class="mr-3" :src="item.vehicle.avatar" />
+
+          <div>
+            <div class="d-flex justify-space-between">
+              <div class="mr-2">Инвентарный номер</div>
+              <div>
+                {{ item.vehicle.inventory_number }}
+              </div>
+            </div>
+
+            <div class="d-flex justify-space-between">
+              <div class="mr-2">Бренд</div>
+              <div>
+                {{ item.vehicle.brand }}
+              </div>
+            </div>
+
+            <div class="d-flex justify-space-between">
+              <div class="mr-2">Гос. номер</div>
+              <div>
+                {{ item.vehicle.gov_number }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          v-for="detail in detailsProps"
+          :key="detail.label"
+          class="d-flex justify-space-between"
+        >
+          <div class="mr-2">{{ detail.label }}</div>
+          <div>
+            {{ item[`${detail.value}`] }}
+          </div>
+        </div>
+
+        <div class="d-flex justify-space-between">
+          <div class="mr-2">Показания счетчика</div>
+          <div>
+            {{ item.counter.value }}
+          </div>
+        </div>
+
+        <!-- {{ item }} -->
       </template>
     </general-list-page>
   </div>
@@ -112,7 +134,6 @@
 <script>
 import createEditSheet from '@/modules/CRUD/components/createEditSheet.vue'
 import GeneralListPage from '@/modules/CRUD/components/GeneralListPage.vue'
-import fueldDetails from '@/components/fueling/fueldDetails.vue'
 
 import FormItem from '@/modules/CRUD/components/FormItem.vue'
 
@@ -126,13 +147,46 @@ export default {
     createEditSheet,
     GeneralListPage,
     FormItem,
-    fueldDetails,
   },
 
   data() {
     return {
       tab: null,
       filters: getDefaultFilters(),
+      customeFueling: {
+        ...this.$fuelingRepository,
+        index: () => {
+          return this.$fuelingRepository.index({
+            vehicle: this.$route.params.id,
+          })
+        },
+      },
+      detailsProps: [
+        {
+          label: 'Обьем',
+          value: 'liters',
+        },
+        {
+          label: 'Тип топлива',
+          value: 'fuel_type_name',
+        },
+        {
+          label: 'Цена за единицу',
+          value: 'price',
+        },
+        {
+          label: 'Сумма',
+          value: 'summ',
+        },
+        {
+          label: 'Дата и время заправки',
+          value: 'date',
+        },
+        {
+          label: 'Дата и время создания записи',
+          value: 'created_at',
+        },
+      ],
 
       headers: [
         {

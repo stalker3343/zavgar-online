@@ -39,19 +39,19 @@
       <v-row>
         <v-col cols="3">
           <v-tabs vertical>
-            <v-tab nuxt :to="{ name: 'settings-fuel-types' }">
+            <v-tab exact nuxt :to="{ name: 'vehicles-id' }">
               <!-- <v-icon left> mdi-account </v-icon> -->
               О ТС
             </v-tab>
-            <v-tab nuxt :to="{ name: 'settings-fuel-types' }">
+            <v-tab nuxt :to="{ name: 'vehicles-id-counter' }">
               <!-- <v-icon left> mdi-account </v-icon> -->
               Показания счетчика
             </v-tab>
-            <v-tab nuxt :to="{ name: 'settings-fuel-types' }">
+            <v-tab nuxt :to="{ name: 'vehicles-id-fueling' }">
               <!-- <v-icon left> mdi-account </v-icon> -->
               Заправка
             </v-tab>
-            <v-tab nuxt :to="{ name: 'settings-fuel-types' }">
+            <v-tab nuxt :to="{ name: 'vehicles-id-history' }">
               <!-- <v-icon left> mdi-account </v-icon> -->
               История
             </v-tab>

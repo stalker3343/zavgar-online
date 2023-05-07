@@ -61,6 +61,13 @@
               <v-icon v-text="icon" />
             </v-list-item-icon> -->
           </v-list-item>
+          <v-list-item :to="{ name: 'counter' }" link>
+            <v-list-item-title> История показаний </v-list-item-title>
+
+            <!-- <v-list-item-icon>
+              <v-icon v-text="icon" />
+            </v-list-item-icon> -->
+          </v-list-item>
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
