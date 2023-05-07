@@ -184,7 +184,7 @@ import VehiclesFilter from '@/components/filters/VehiclesFilter.vue'
 import FormItem from '@/modules/CRUD/components/FormItem.vue'
 
 const getDefaultFilters = () => ({
-  inventory_number: '',
+  inventory_number: [],
 })
 export default {
   components: {
