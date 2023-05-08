@@ -7,7 +7,8 @@
         placeholder="статус"
       />
       <vehicles-filter v-model="filters.vehicle" multiple />
-      <date-picker v-model="filters.date" placeholder="date" />
+      <date-picker v-model="filters.date_after" placeholder="date_after" />
+      <date-picker v-model="filters.date_before" placeholder="date_before" />
     </filters-layout>
 
     <div class="d-flex">
@@ -144,7 +145,8 @@ import FiltersLayout from '@/components/filters/FiltersLayout.vue'
 
 const getDefaultFilters = () => ({
   vehicle: [],
-  date: '',
+  date_after: '',
+  date_before: '',
   status: 'open',
 })
 export default {

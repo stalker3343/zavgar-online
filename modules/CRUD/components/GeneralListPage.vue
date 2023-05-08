@@ -36,7 +36,10 @@
                 >
                   <template #item.vehicle.inventory_number="{ item }">
                     <div class="d-flex align-center">
-                      <img class="ts-avatar" :src="item.avatar" />
+                      <img
+                        class="ts-avatar"
+                        :src="item.avatar || item.vehicle.avatar"
+                      />
                       <div class="flagman-h3-bold">
                         {{
                           item.inventory_number || item.vehicle.inventory_number
