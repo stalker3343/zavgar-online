@@ -53,6 +53,25 @@ export default function ({ $axios }, inject) {
     },
   })
 
+  inject('maintenanceIssuesRepository', {
+    ...repositoryWithAxios('/api/maintenance/issues/'),
+  })
+  inject('maintenanceTasksRepository', {
+    ...repositoryWithAxios('/api/maintenance/tasks/'),
+  })
+  inject('maintenanceRecordsRepository', {
+    ...repositoryWithAxios('/api/maintenance/records/'),
+  })
+
+  inject('usersRepository', {
+    ...repositoryWithAxios('/auth/users/'),
+    // async index() {
+    //   const res = await $axios.$get(`/auth/users/`)
+    //   console.log(res)
+    //   return res.map((el) => ({ ...el, id: Number(el.id) }))
+    // },
+  })
+
   inject('fuelTypesRepository', {
     ...repositoryWithAxios('/api/vehicles/fuel-types/'),
   })
@@ -84,23 +103,23 @@ export default function ({ $axios }, inject) {
     ...repositoryWithAxios('/api/vehicles/counters/'),
   })
 
-  inject('usersRepository', {
-    ...repositoryWithAxios('/api/users'),
-    index() {
-      return [
-        {
-          id: '0',
-          first_name: 'Андрей',
-          role: 'admin',
-        },
-        {
-          id: '1',
-          first_name: 'Иван',
-          role: 'worker',
-        },
-      ]
-    },
-  })
+  // inject('usersRepository', {
+  //   ...repositoryWithAxios('/api/users'),
+  //   index() {
+  //     return [
+  //       {
+  //         id: '0',
+  //         first_name: 'Андрей',
+  //         role: 'admin',
+  //       },
+  //       {
+  //         id: '1',
+  //         first_name: 'Иван',
+  //         role: 'worker',
+  //       },
+  //     ]
+  //   },
+  // })
 
   inject('productRepository', {
     ...repositoryWithAxios('/api/product'),

@@ -37,6 +37,7 @@
             <v-list-item-title> Главная</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
         <!-- prepend-icon="mdi-account-circle" -->
         <v-list-group :value="true">
           <template #activator>
@@ -64,6 +65,24 @@
         <v-list-item exact :to="{ name: 'fueling' }">
           <v-list-item-content>
             <v-list-item-title> Заправки</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item exact :to="{ name: 'issues' }">
+          <v-list-item-content>
+            <v-list-item-title> Проблемы</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item exact :to="{ name: 'tasks' }">
+          <v-list-item-content>
+            <v-list-item-title> Задачи</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item exact :to="{ name: 'records' }">
+          <v-list-item-content>
+            <v-list-item-title> Сервисные записи</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 

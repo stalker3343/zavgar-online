@@ -202,8 +202,8 @@ export default {
 
       headers: [
         {
-          text: 'Фото',
-          value: 'avatar',
+          text: 'ТС',
+          value: 'vehicle.inventory_number',
         },
         {
           text: 'Инвентарный номер',

@@ -34,8 +34,33 @@
                   :items="items"
                   :headers="innerActions"
                 >
+                  <template #item.vehicle.inventory_number="{ item }">
+                    <div class="d-flex align-center">
+                      <img class="ts-avatar" :src="item.avatar" />
+                      <div class="flagman-h3-bold">
+                        {{
+                          item.inventory_number || item.vehicle.inventory_number
+                        }}
+                        <!-- {{  }} -->
+                      </div>
+                    </div>
+                  </template>
+
+                  <template #item.records-dates="{ item }">
+                    <slot name="records-dates" :item="item" />
+                  </template>
+                  <template #item.records-details="{ item }">
+                    <slot name="records-details" :item="item" />
+                  </template>
+
+                  <template #item.comment="{ item }">
+                    <slot name="comment" :item="item" />
+                  </template>
+                  <template #item.issues-users="{ item }">
+                    <slot name="issues-users" :item="item" />
+                  </template>
+
                   <template #item.actions="{ item }">
-                    <slot name="actions" :item="item" />
                     <v-icon
                       v-if="showDetails"
                       class="mr-2"
@@ -53,6 +78,7 @@
                     <v-icon v-if="showDelete" @click.stop="onDeleteItem(item)">
                       mdi-delete
                     </v-icon>
+                    <slot name="actions" :item="item" />
                   </template>
                   <template #no-data>
                     <v-btn color="primary" @click="initialize"> Reset </v-btn>
@@ -214,5 +240,11 @@ export default {
   background: white;
   border-radius: 10px;
   padding: 10px 20px;
+}
+.ts-avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 8px;
 }
 </style>

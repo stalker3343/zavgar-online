@@ -23,4 +23,8 @@ export default ($axios) => (resource) => ({
   bulk(payload) {
     return $axios.$put(`${resource}/bulk`, payload)
   },
+
+  patch(id, payload) {
+    return $axios.$patch(`${resource}${id}/`, payload)
+  },
 })
