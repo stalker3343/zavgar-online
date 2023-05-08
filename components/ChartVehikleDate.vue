@@ -37,6 +37,10 @@ export default {
       type: Function,
       required: true,
     },
+    baseFilters: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -120,7 +124,7 @@ export default {
     }
   },
   async fetch() {
-    const arr = await this.repository(this.filters)
+    const arr = await this.repository({ ...this.filters, ...this.baseFilters })
     this.series = [
       {
         name: 'График',
