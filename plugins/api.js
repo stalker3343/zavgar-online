@@ -2,6 +2,85 @@ import createRepository from '@/api/repository'
 
 export default function ({ $axios }, inject) {
   const repositoryWithAxios = createRepository($axios)
+  inject('dashboardRepository', {
+    //     /api/dashboard/vehicles/expenses/ - Доп расходы
+    // /api/dashboard/vehicles/services/ - Затраты на сервис
+
+    async expenses(params) {
+      const res = await $axios.$get(`/api/dashboard/vehicles/expenses/`, {
+        params,
+      })
+      return res.map((el) => ({
+        x: el.month,
+        y: el.price,
+      }))
+    },
+
+    async services(params) {
+      const res = await $axios.$get(`/api/dashboard/vehicles/services/`, {
+        params,
+      })
+      return res.map((el) => ({
+        x: el.month,
+        y: el.price,
+      }))
+    },
+
+    async fuel(params) {
+      const res = await $axios.$get(`/api/dashboard/fuel-costs/`, {
+        params,
+      })
+      return res.map((el) => ({
+        x: el.month,
+        y: el.cost,
+      }))
+    },
+    issues() {
+      return $axios.$get(`/api/dashboard/issues/`)
+    },
+    vehicles() {
+      return $axios.$get(`/api/dashboard/vehicles/`)
+    },
+    async kilometer(params) {
+      const res = await $axios.$get(
+        `/api/dashboard/vehicles/cost-per-kilometer/`,
+        {
+          params,
+        }
+      )
+      return res.map((el) => ({
+        x: el.month,
+        y: Number(el.price).toFixed(4),
+      }))
+    },
+    async counter(params) {
+      const res = await $axios.$get(`/api/dashboard/vehicles/top-counter/`, {
+        params,
+      })
+      return res.map((el) => ({
+        x: el.inv_number,
+        y: el.counter,
+      }))
+    },
+    async fueling(params) {
+      const res = await $axios.$get(`/api/dashboard/vehicles/top-fueling/`, {
+        params,
+      })
+      return res.map((el) => ({
+        x: el.inv_number,
+        y: el.price,
+      }))
+    },
+    async millage(params) {
+      const res = await $axios.$get(`/api/dashboard/vehicles/total-millage/`, {
+        params,
+      })
+      return res.map((el) => ({
+        x: el.month,
+        y: el.counter,
+      }))
+    },
+  })
 
   inject('vehiclesDictionaryRepository', {
     // warehouse	integer

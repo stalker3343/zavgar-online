@@ -76,7 +76,7 @@ import FiltersLayout from '@/components/filters/FiltersLayout.vue'
 import FormItem from '@/modules/CRUD/components/FormItem.vue'
 
 const getDefaultFilters = () => ({
-  vehicle: '',
+  vehicle: [],
   date_after: '',
   date_before: '',
 })
