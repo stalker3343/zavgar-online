@@ -30,7 +30,7 @@
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
           :item-id="editedItem"
-          header-title="Транспортное средство"
+          header-title="ТС"
           :repository="$vehiclesRepository"
           :get-default-item="defaultVehicle"
           @success-create="onSuccesDataUpdate"
@@ -40,7 +40,7 @@
             <v-tabs v-model="tab" :height="35" class="mb-4" align-with-title>
               <v-tab>Информация</v-tab>
               <v-tab>Даты</v-tab>
-              <v-tab>Словари</v-tab>
+              <v-tab>Дополнительно</v-tab>
 
               <v-tab>Двигатель</v-tab>
               <v-tab>Распределение</v-tab>
@@ -50,31 +50,31 @@
 
             <v-tabs-items v-model="tab">
               <v-tab-item>
-                <form-item label="gov_number">
+                <form-item label="Номер. гос регистрации">
                   <flag-text-field
                     v-model="item.gov_number"
                     :height="40"
-                    placeholder="gov_number"
+                    placeholder="Номер. гос регистрации"
                   />
                 </form-item>
 
-                <form-item label="year">
+                <form-item label="Год выпуска">
                   <flag-text-field
                     v-model="item.year"
                     :height="40"
-                    placeholder="year"
+                    placeholder="Год выпуска"
                   />
                 </form-item>
 
-                <form-item label="inventory_number">
+                <form-item label="Инвентарный номер">
                   <flag-text-field
                     v-model="item.inventory_number"
                     :height="40"
-                    placeholder="inventory_number"
+                    placeholder="Инвентарный номер"
                   />
                 </form-item>
 
-                <form-item label="fuel_type">
+                <form-item label="Вид Топлива">
                   <flag-select
                     v-model="item.fuel_type"
                     is-server-items-load
@@ -133,38 +133,66 @@
               </v-tab-item>
 
               <v-tab-item>
-                <form-item label="number">
+                <form-item label="Номер">
                   <flag-text-field
                     v-model="item.engine.number"
                     :height="40"
-                    placeholder="number"
+                    placeholder="Номер"
                   />
                 </form-item>
-                <form-item label="model">
+                <form-item label="Модель">
                   <flag-text-field
                     v-model="item.engine.model"
                     :height="40"
-                    placeholder="model"
+                    placeholder="модель"
                   />
                 </form-item>
-                <form-item label="power">
+                <form-item label="Мощность">
                   <flag-text-field
                     v-model="item.engine.power"
                     :height="40"
-                    placeholder="power"
+                    placeholder="мощность"
                   />
                 </form-item>
-                <form-item label="capacity">
+                <form-item label="Обьем">
                   <flag-text-field
                     v-model="item.engine.capacity"
                     :height="40"
-                    placeholder="capacity"
+                    placeholder="Обьем"
                   />
                 </form-item>
               </v-tab-item>
 
-              <v-tab-item> Распределение </v-tab-item>
-              <v-tab-item> Паспорт </v-tab-item>
+              <v-tab-item>
+                <form-item label="Номер">
+                  <flag-text-field
+                    v-model="item.distribution.number"
+                    :height="40"
+                    placeholder="Номер"
+                  />
+                </form-item>
+                <form-item label="Дата">
+                  <date-picker
+                    v-model="item.distribution.date"
+                    placeholder="Дата"
+                  />
+                </form-item>
+              </v-tab-item>
+              <v-tab-item>
+                <form-item label="Номер">
+                  <flag-text-field
+                    v-model="item.passport.number"
+                    :height="40"
+                    placeholder="Номер"
+                  />
+                </form-item>
+                <form-item label="Дата">
+                  <date-picker
+                    v-model="item.passport.date"
+                    placeholder="Дата"
+                  />
+                </form-item>
+              </v-tab-item>
 
               <v-tab-item> Файлы </v-tab-item>
             </v-tabs-items>
@@ -360,10 +388,17 @@ export default {
           power: 1,
           capacity: '',
         },
-        distribution: {},
-        passport: {},
+
+        distribution: {
+          number: null,
+          date: null,
+        },
+        passport: {
+          number: null,
+          date: null,
+        },
         inventory_number: '',
-        year: '',
+        year: null,
         gov_number: '',
         fuel_type: null,
 

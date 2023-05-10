@@ -19,15 +19,20 @@
             <v-card-subtitle> Проблемы</v-card-subtitle>
             <v-card-text>
               <v-row>
-                <v-col>
-                  <div class="flagman-h3-bold">Открытые</div>
+                <v-col style="color: #ffbd68">
+                  <div style="color: #ffbd68" class="flagman-h3-bold">
+                    Открытые
+                  </div>
 
                   {{ res.issues.open }}
                 </v-col>
                 <v-col>
-                  <div class="flagman-h3-bold">Просроченные</div>
-
-                  {{ res.issues.overdue }}
+                  <div class="red--text">
+                    <div class="red--text flagman-h3-bold">Просроченные</div>
+                    <div>
+                      {{ res.issues.overdue }}
+                    </div>
+                  </div>
                 </v-col>
               </v-row>
             </v-card-text>

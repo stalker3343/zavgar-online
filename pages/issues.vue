@@ -7,8 +7,8 @@
         placeholder="статус"
       />
       <vehicles-filter v-model="filters.vehicle" multiple />
-      <date-picker v-model="filters.date_after" placeholder="date_after" />
-      <date-picker v-model="filters.date_before" placeholder="date_before" />
+      <date-picker v-model="filters.date_after" placeholder="С" />
+      <date-picker v-model="filters.date_before" placeholder="По" />
     </filters-layout>
 
     <div class="d-flex">
@@ -28,7 +28,7 @@
     >
       <template #comment="{ item }">
         <div class="d-flex">
-          <div class="flagman-h3-bold mr-2">Summary</div>
+          <div class="flagman-h3-bold mr-2" />
           <div>{{ item.summary }}</div>
         </div>
         <div class="d-flex">
@@ -53,14 +53,14 @@
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
           :item-id="editedItem"
-          header-title="Проблемы"
+          header-title="Проблему"
           :repository="$maintenanceIssuesRepository"
           :get-default-item="defaultVehicle"
           @success-create="onSuccesDataUpdate"
           @success-edit="onSuccesDataUpdate"
         >
           <template #default="{ item }">
-            <form-item label="vehicle_id">
+            <form-item label="ТС">
               <flag-select
                 v-model="item.vehicle_id"
                 item-text="inventory_number"
@@ -69,21 +69,21 @@
               />
             </form-item>
 
-            <form-item label="counter">
+            <form-item label="Текущие показания счетчика">
               <flag-text-field
                 v-model="item.counter.value"
                 :height="40"
-                placeholder="counter"
+                placeholder="Текущие показания счетчика"
               />
             </form-item>
-            <form-item label="summary">
+            <form-item label="Проблема">
               <flag-text-field
                 v-model="item.summary"
                 :height="40"
-                placeholder="summary"
+                placeholder="Проблема"
               />
             </form-item>
-            <form-item label="users_id">
+            <form-item label="Ответсвенные лица">
               <flag-select
                 v-model="item.users_id"
                 multiple
@@ -94,11 +94,11 @@
             </form-item>
 
             <form-item label="date">
-              <date-picker v-model="item.date" placeholder="date" />
+              <date-picker v-model="item.date" placeholder="Дата сообщения" />
             </form-item>
 
-            <form-item label="due_date">
-              <date-picker v-model="item.due_date" placeholder="due_date" />
+            <form-item label="Крайний срок">
+              <date-picker v-model="item.due_date" placeholder="Крайний срок" />
             </form-item>
           </template>
         </create-edit-sheet>

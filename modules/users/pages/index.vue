@@ -55,7 +55,7 @@ export default {
       ],
       headers: [
         {
-          text: 'Имя',
+          text: 'Название',
           value: 'first_name',
         },
         {

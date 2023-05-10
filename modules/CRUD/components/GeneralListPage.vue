@@ -9,7 +9,7 @@
           <v-spacer />
           <flag-btn color="primary" @click="isCreateEditSheetOpen = true">
             <v-icon>mdi-plus</v-icon>
-            Создать
+            Добавить
           </flag-btn>
         </v-col>
       </v-row>
@@ -166,24 +166,43 @@ export default {
       editedUserId: null,
 
       isDetailsModalOpen: false,
+
+      hasDeletedField: false,
     }
   },
   fetchOnServer: false,
   async fetch() {
     this.items = await this.repository.index(this.filters)
+    // eslint-disable-next-line no-prototype-builtins
+    console.log(this.items[0].hasOwnProperty('deleted_at'), 'dsd')
+    if (
+      Array.isArray(this.items) &&
+      this.items[0] &&
+      // eslint-disable-next-line no-prototype-builtins
+      this.items[0].hasOwnProperty('deleted_at')
+    )
+      this.hasDeletedField = true
     this.$emit('update-items', this.items)
   },
   computed: {
     innerActions() {
-      return [
-        ...this.headers,
-        {
-          value: 'actions',
+      const res = [...this.headers]
+      if (this.hasDeletedField)
+        res.push({
+          value: 'deleted_at',
+          text: 'Удален',
           sortable: false,
           align: 'right',
           width: 200,
-        },
-      ]
+        })
+
+      res.push({
+        value: 'actions',
+        sortable: false,
+        align: 'right',
+        width: 200,
+      })
+      return res
     },
   },
   watch: {

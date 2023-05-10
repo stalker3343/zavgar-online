@@ -4,14 +4,14 @@
       <!-- <v-icon left> mdi-account </v-icon> -->
       <v-col cols="3">
         <v-tabs vertical>
-          <v-tab nuxt :to="{ name: 'settings-fuel-types' }">
-            Типы топлива
-          </v-tab>
+          <v-tab nuxt :to="{ name: 'settings' }"> Типы топлива </v-tab>
           <!-- /api/vehicles/brands/ -->
           <v-tab nuxt :to="{ name: 'settings-brands' }"> марки ТС </v-tab>
 
           <!-- /api/vehicles/groups/ -->
           <v-tab nuxt :to="{ name: 'settings-groups' }">Штатные группы </v-tab>
+
+          <v-tab nuxt :to="{ name: 'settings-expenses' }">Типы расходов </v-tab>
 
           <!-- /api/vehicles/types/ -->
           <v-tab nuxt :to="{ name: 'inspire' }"> Типы </v-tab>

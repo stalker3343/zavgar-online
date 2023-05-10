@@ -2,7 +2,8 @@
   <div>
     <filters-layout class="mb-3">
       <vehicles-filter v-model="filters.vehicle" multiple />
-      <!-- <date-picker v-model="filters.date" placeholder="date" /> -->
+      <date-picker v-model="filters.date_after" placeholder="С" />
+      <date-picker v-model="filters.date_before" placeholder="По" />
     </filters-layout>
 
     <div class="d-flex">
@@ -10,7 +11,7 @@
       <flag-btn @click="resetFilters"> Сброс </flag-btn>
     </div>
     <!-- eslint-disable vue/valid-v-slot  -->
-    <!--  show-details  -->
+    <!--  show-details -->
     <general-list-page
       ref="generalListPage"
       :filters="filters"
@@ -18,31 +19,24 @@
       :headers="headers"
       show-create
       show-edit
-      :repository="$maintenanceRecordsRepository"
+      :repository="$vehiclesExpensesRepository"
     >
-      <template #records-dates="{ item }">
+      <template #comment="{ item }">
         <div class="d-flex">
-          <div class="flagman-h3-bold mr-2">Начало работ</div>
-          <div>{{ item.start_date }}</div>
+          <div class="flagman-h3-bold mr-2">Дата</div>
+          <div>{{ item.date }}</div>
         </div>
         <div class="d-flex">
-          <div class="flagman-h3-bold mr-2">Крайний срок</div>
-          <div>{{ item.end_date }}</div>
+          <div class="flagman-h3-bold mr-2">Описание</div>
+          <div>{{ item.description }}</div>
         </div>
-      </template>
-
-      <template #records-details="{ item }">
-        <div class="flagman-h3-bold mr-2">Задачи</div>
-        <div v-for="task in item.tasks" :key="task.id">{{ task.name }}</div>
-        <div class="flagman-h3-bold mt-4">Проблемы</div>
-        <div v-for="task in item.issues" :key="task.id">{{ task.summary }}</div>
       </template>
 
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
           :item-id="editedItem"
-          header-title="Сервисную запись"
-          :repository="$maintenanceRecordsRepository"
+          header-title="Доп. расход"
+          :repository="$vehiclesExpensesRepository"
           :get-default-item="defaultVehicle"
           @success-create="onSuccesDataUpdate"
           @success-edit="onSuccesDataUpdate"
@@ -57,50 +51,34 @@
               />
             </form-item>
 
-            <form-item label="Текущие показания счетчика">
+            <form-item label="date">
+              <date-picker v-model="item.date" placeholder="date" />
+            </form-item>
+
+            <form-item label="description">
               <flag-text-field
-                v-model="item.counter.value"
+                v-model="item.description"
                 :height="40"
-                placeholder="Текущие показания счетчика"
+                placeholder="description"
               />
             </form-item>
-            <form-item label="Стоимость">
+
+            <form-item label="price">
               <flag-text-field
                 v-model="item.price"
                 :height="40"
-                placeholder="Стоимость"
+                placeholder="price"
               />
             </form-item>
 
-            <form-item label="Задачи">
+            <form-item label="type">
               <flag-select
-                v-model="item.tasks"
+                v-model="item.type"
                 multiple
-                item-text="name"
+                item-text="id"
                 is-server-items-load
-                :repository="$maintenanceTasksRepository"
+                :repository="$expensesTypesRepository"
               />
-            </form-item>
-
-            <form-item label="ПРоблемы">
-              <flag-select
-                v-model="item.issues"
-                multiple
-                item-text="summary"
-                is-server-items-load
-                :repository="$maintenanceIssuesRepository"
-              />
-            </form-item>
-
-            <form-item label="Начало работ">
-              <date-picker
-                v-model="item.start_date"
-                placeholder="Начало работ"
-              />
-            </form-item>
-
-            <form-item label="Крайний срок">
-              <date-picker v-model="item.end_date" placeholder="Крайний срок" />
             </form-item>
           </template>
         </create-edit-sheet>
@@ -125,8 +103,9 @@ import FiltersLayout from '@/components/filters/FiltersLayout.vue'
 
 const getDefaultFilters = () => ({
   vehicle: [],
-  //   date: '',
-  //   status: 'open',
+  date_after: '',
+  date_before: '',
+  status: 'open',
 })
 export default {
   components: {
@@ -142,6 +121,7 @@ export default {
   data() {
     return {
       tab: null,
+
       filters: getDefaultFilters(),
 
       headers: [
@@ -150,30 +130,25 @@ export default {
           value: 'vehicle.inventory_number',
         },
         {
-          text: 'Даты',
-          value: 'records-dates',
+          text: 'comment',
+          value: 'comment',
         },
         {
-          text: 'Детали',
-          value: 'records-details',
-        },
-        {
-          text: 'Сумма',
+          text: 'price',
           value: 'price',
         },
+
         {
-          text: 'Создан в системе',
-          value: 'created_at',
+          text: 'type',
+          value: 'type',
         },
       ],
       defaultVehicle: () => ({
         vehicle_id: null,
-        counter: { value: null },
-        start_date: '',
-        end_date: '',
-        price: '',
-        tasks: [],
-        issues: [],
+        date: null,
+        description: null,
+        price: null,
+        type: 1,
         // fuel_type: null,
         // price: null,
         // summ: null,

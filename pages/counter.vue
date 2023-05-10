@@ -2,8 +2,8 @@
   <div>
     <filters-layout class="mb-3">
       <vehicles-filter v-model="filters.vehicle" multiple />
-      <date-picker v-model="filters.date_after" placeholder="date_after" />
-      <date-picker v-model="filters.date_before" placeholder="date_before" />
+      <date-picker v-model="filters.date_after" placeholder="С" />
+      <date-picker v-model="filters.date_before" placeholder="По" />
     </filters-layout>
 
     <div class="d-flex">
@@ -31,7 +31,7 @@
           @success-edit="onSuccesDataUpdate"
         >
           <template #default="{ item }">
-            <form-item label="vehicle_id">
+            <form-item label="ТС">
               <flag-select
                 v-model="item.vehicle_id"
                 item-text="inventory_number"
@@ -40,15 +40,15 @@
               />
             </form-item>
 
-            <form-item label="date">
+            <form-item label="Дата">
               <flag-text-field
                 v-model="item.date"
                 :height="40"
-                placeholder="date"
+                placeholder="Дата"
               />
             </form-item>
 
-            <form-item label="value">
+            <form-item label="Текущие показания счетчика">
               <flag-text-field
                 v-model="item.value"
                 :height="40"
@@ -107,11 +107,11 @@ export default {
           value: 'date',
         },
         {
-          text: 'значение',
+          text: 'Значение',
           value: 'value',
         },
         {
-          text: 'тип',
+          text: 'Тип',
           value: 'type',
         },
       ],

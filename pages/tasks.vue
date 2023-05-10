@@ -9,7 +9,7 @@
     <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
       <create-edit-sheet
         :item-id="editedItem"
-        header-title="задачи"
+        header-title="Задачу"
         :repository="$maintenanceTasksRepository"
         :get-default-item="defaultCategory"
         @success-create="onSuccesDataUpdate"
@@ -45,7 +45,7 @@ export default {
     return {
       headers: [
         {
-          text: 'Имя',
+          text: 'Название',
           value: 'name',
         },
       ],

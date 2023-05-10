@@ -75,8 +75,8 @@ export default {
   computed: {
     headerText() {
       return this.itemId
-        ? `Редактирование ${this.headerTitle}`
-        : `Создание ${this.headerTitle}`
+        ? `Редактировать ${this.headerTitle}`
+        : `Добавить ${this.headerTitle}`
     },
   },
   methods: {

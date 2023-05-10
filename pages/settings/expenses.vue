@@ -1,16 +1,16 @@
 <template>
   <general-list-page
-    delete-confirm-text="Бренд"
+    delete-confirm-text="Тип расхода"
     :headers="headers"
     show-create
     show-edit
-    :repository="$brandsTypesRepository"
+    :repository="$expensesTypesRepository"
   >
     <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
       <create-edit-sheet
         :item-id="editedItem"
         header-title="Марка"
-        :repository="$brandsTypesRepository"
+        :repository="$expensesTypesRepository"
         :get-default-item="defaultCategory"
         @success-create="onSuccesDataUpdate"
         @success-edit="onSuccesDataUpdate"

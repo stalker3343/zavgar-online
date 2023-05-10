@@ -66,7 +66,7 @@ export default {
     return {
       headers: [
         {
-          text: 'Имя',
+          text: 'Название',
           value: 'name',
         },
         {

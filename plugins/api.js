@@ -2,6 +2,23 @@ import createRepository from '@/api/repository'
 
 export default function ({ $axios }, inject) {
   const repositoryWithAxios = createRepository($axios)
+
+  inject('vehiclesExpensesRepository', {
+    ...repositoryWithAxios('/api/vehicles/expenses/'),
+  })
+
+  inject('vehiclesExpensesRepository', {
+    ...repositoryWithAxios('/api/vehicles/expenses/'),
+  })
+
+  inject('vehiclesExpensesRepository', {
+    ...repositoryWithAxios('/api/vehicles/expenses/'),
+  })
+
+  inject('waybillsRepository', {
+    ...repositoryWithAxios('/api/waybills/'),
+  })
+
   inject('dashboardRepository', {
     //     /api/dashboard/vehicles/expenses/ - Доп расходы
     // /api/dashboard/vehicles/services/ - Затраты на сервис

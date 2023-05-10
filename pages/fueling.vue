@@ -2,8 +2,8 @@
   <div>
     <filters-layout class="mb-3">
       <vehicles-filter v-model="filters.vehicle" multiple />
-      <date-picker v-model="filters.date_after" placeholder="date_after" />
-      <date-picker v-model="filters.date_before" placeholder="date_before" />
+      <date-picker v-model="filters.date_after" placeholder="С" />
+      <date-picker v-model="filters.date_before" placeholder="По" />
     </filters-layout>
 
     <div class="d-flex">
@@ -25,14 +25,14 @@
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
           :item-id="editedItem"
-          header-title="Заправка"
+          header-title="Заправку"
           :repository="$fuelingRepository"
           :get-default-item="defaultVehicle"
           @success-create="onSuccesDataUpdate"
           @success-edit="onSuccesDataUpdate"
         >
           <template #default="{ item }">
-            <form-item label="vehicle_id">
+            <form-item label="ТС">
               <flag-select
                 v-model="item.vehicle_id"
                 item-text="inventory_number"
@@ -40,7 +40,7 @@
                 :repository="$vehiclesRepository"
               />
             </form-item>
-            <form-item label="fuel_type">
+            <form-item label="Вид топлива">
               <flag-select
                 v-model="item.fuel_type"
                 is-server-items-load
@@ -48,35 +48,35 @@
               />
             </form-item>
 
-            <form-item label="counter">
+            <form-item label="Текущие показания счетчика">
               <flag-text-field
                 v-model="item.counter.value"
                 :height="40"
-                placeholder="counter"
+                placeholder="Текущие показания счетчика"
               />
             </form-item>
 
-            <form-item label="price">
+            <form-item label="Цена за ед.">
               <flag-text-field
                 v-model="item.price"
                 :height="40"
-                placeholder="price"
+                placeholder="Цена за ед."
               />
             </form-item>
 
-            <form-item label="summ">
+            <form-item label="Стоимость">
               <flag-text-field
                 v-model="item.summ"
                 :height="40"
-                placeholder="summ"
+                placeholder="Стоимость"
               />
             </form-item>
 
-            <form-item label="liters">
+            <form-item label="Обьем(ол-во)">
               <flag-text-field
                 v-model="item.liters"
                 :height="40"
-                placeholder="liters"
+                placeholder="Обьем(ол-во)"
               />
             </form-item>
 
@@ -147,7 +147,7 @@ export default {
           value: 'vehicle.counter',
         },
         {
-          text: 'обьем',
+          text: 'Обьем',
           value: 'liters',
         },
 
