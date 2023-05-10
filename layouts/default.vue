@@ -28,7 +28,7 @@
     </v-app-bar>
 
     <v-navigation-drawer class="app-nav-drawer" permanent fixed app>
-      <img src="@/assets/images/logo.svg" class="logo__img" />
+      <img src="@/assets/images/logo.jpg" class="logo__img" />
 
       <v-spacer />
       <v-list>
@@ -66,6 +66,12 @@
               <v-icon v-text="icon" />
             </v-list-item-icon> -->
           </v-list-item>
+
+          <v-list-item exact :to="{ name: 'expenses' }">
+            <v-list-item-content>
+              <v-list-item-title class="pl-6"> Доп. Расходы </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list-group>
 
         <v-list-group :value="true">
@@ -91,12 +97,6 @@
         <v-list-item exact :to="{ name: 'fueling' }">
           <v-list-item-content>
             <v-list-item-title> Топливо</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item exact :to="{ name: 'expenses' }">
-          <v-list-item-content>
-            <v-list-item-title> Доп. Расходы </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 

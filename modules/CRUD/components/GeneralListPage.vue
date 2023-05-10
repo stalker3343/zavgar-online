@@ -63,6 +63,12 @@
                     <slot name="issues-users" :item="item" />
                   </template>
 
+                  <template #item.deleted_at="{ item }">
+                    <v-icon v-if="item.deleted_at" class="red--text">
+                      mdi-close-thick
+                    </v-icon>
+                  </template>
+
                   <template #item.actions="{ item }">
                     <v-icon
                       v-if="showDetails"
@@ -190,7 +196,7 @@ export default {
       if (this.hasDeletedField)
         res.push({
           value: 'deleted_at',
-          text: 'Удален',
+          text: '',
           sortable: false,
           align: 'right',
           width: 200,

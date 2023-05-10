@@ -5,7 +5,7 @@
         <v-row>
           <v-col class="py-0">
             <img
-              src="@/assets/images/logo.svg"
+              src="@/assets/images/logo.jpg"
               class="d-block mx-auto logo__img"
             />
           </v-col>
