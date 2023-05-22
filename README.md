@@ -16,6 +16,15 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+## Docker
+```shell
+docker build -t frontend .
+```
+- Run migrations
+```shell
+docker run -p 3000:3000 frontend
+```
+
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
