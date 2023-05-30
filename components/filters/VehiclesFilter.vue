@@ -4,8 +4,8 @@
     v-bind="$attrs"
     is-local-search
     item-text="inventory_number"
-    item-value="id"
-    label="Выберете ТС"
+    item-value="inventory_number"
+    label="ТС"
     v-on="$listeners"
   />
 </template>

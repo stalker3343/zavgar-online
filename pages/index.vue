@@ -16,7 +16,9 @@
         </v-col>
         <v-col cols="9">
           <v-card>
-            <v-card-subtitle> Проблемы</v-card-subtitle>
+            <v-card-subtitle style="text-align: center">
+              Проблемы</v-card-subtitle
+            >
             <v-card-text>
               <v-row>
                 <v-col style="color: #ffbd68">

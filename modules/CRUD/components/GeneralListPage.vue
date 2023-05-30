@@ -180,7 +180,6 @@ export default {
   async fetch() {
     this.items = await this.repository.index(this.filters)
     // eslint-disable-next-line no-prototype-builtins
-    console.log(this.items[0].hasOwnProperty('deleted_at'), 'dsd')
     if (
       Array.isArray(this.items) &&
       this.items[0] &&

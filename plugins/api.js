@@ -156,7 +156,10 @@ export default function ({ $axios }, inject) {
     ...repositoryWithAxios('/api/maintenance/tasks/'),
   })
   inject('maintenanceRecordsRepository', {
-    ...repositoryWithAxios('/api/maintenance/records/'),
+    index() {
+      return []
+    },
+    // ...repositoryWithAxios('/api/maintenance/records/'),
   })
 
   inject('usersRepository', {
