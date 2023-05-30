@@ -4,7 +4,7 @@
 
     <general-list-page
       ref="generalListPage"
-      delete-confirm-text="Запись"
+      delete-confirm-text="Накладную"
       :headers="headers"
       :show-delete="false"
       :repository="customeFueling"
@@ -23,32 +23,20 @@ export default {
   data() {
     return {
       customeFueling: {
-        ...this.$vehiclesRepository,
+        ...this.$waybillsRepository,
         index: () => {
-          return this.$vehiclesRepository.history(this.$route.params.id)
+          return this.$waybillsRepository.index(this.$route.params.id)
         },
       },
 
       headers: [
         {
-          text: 'Поле',
-          value: 'verbose_name',
-        },
-        // {
-        //   text: 'content_type',
-        //   value: 'content_type',
-        // },
-        // {
-        //   text: 'field',
-        //   value: 'field',
-        // },
-        {
-          text: 'Значение',
-          value: 'value',
+          text: 'Номер',
+          value: 'number',
         },
         {
-          text: 'Дата изменения',
-          value: 'created_at',
+          text: 'Дата',
+          value: 'date',
         },
       ],
     }

@@ -74,8 +74,9 @@ export default function ({ $axios }, inject) {
       const res = await $axios.$get(`/api/dashboard/vehicles/top-counter/`, {
         params,
       })
+      console.log(res)
       return res.map((el) => ({
-        x: el.inv_number,
+        x: String(el.inv_number),
         y: el.counter,
       }))
     },
@@ -156,10 +157,7 @@ export default function ({ $axios }, inject) {
     ...repositoryWithAxios('/api/maintenance/tasks/'),
   })
   inject('maintenanceRecordsRepository', {
-    index() {
-      return []
-    },
-    // ...repositoryWithAxios('/api/maintenance/records/'),
+    ...repositoryWithAxios('/api/maintenance/records/'),
   })
 
   inject('usersRepository', {
@@ -200,6 +198,10 @@ export default function ({ $axios }, inject) {
 
   inject('countersRepository', {
     ...repositoryWithAxios('/api/vehicles/counters/'),
+  })
+
+  inject('expensesTypesRepository', {
+    ...repositoryWithAxios('/api/vehicles/expenses-types/'),
   })
 
   // inject('usersRepository', {
@@ -342,6 +344,14 @@ export default function ({ $axios }, inject) {
 
   inject('shares', {
     ...repositoryWithAxios('api/shares/'),
+
+    // index(payload) {
+    //   return $axios.$post(`/api/api/history/`, payload)
+    // },
+  })
+
+  inject('subdivisionsRepository', {
+    ...repositoryWithAxios('api/vehicles/subdivisions'),
 
     // index(payload) {
     //   return $axios.$post(`/api/api/history/`, payload)

@@ -10,7 +10,7 @@
             />
           </v-col>
         </v-row>
-        <v-row class="d-flex align-center h-100">
+        <v-row class="d-flex align-center h-100 mb-8">
           <nuxt />
         </v-row>
 
@@ -38,7 +38,7 @@ export default {
 .logo__img {
   max-width: 250px;
   margin-top: 70px;
-  margin-bottom: 56px;
+  margin-bottom: 0px;
   display: block;
 
   @media (max-width: 1264px) {

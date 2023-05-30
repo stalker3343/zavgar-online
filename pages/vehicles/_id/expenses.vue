@@ -4,7 +4,7 @@
 
     <general-list-page
       ref="generalListPage"
-      delete-confirm-text="Запись"
+      delete-confirm-text="Расход"
       :headers="headers"
       :show-delete="false"
       :repository="customeFueling"
@@ -23,32 +23,31 @@ export default {
   data() {
     return {
       customeFueling: {
-        ...this.$vehiclesRepository,
+        ...this.$vehiclesExpensesRepository,
         index: () => {
-          return this.$vehiclesRepository.history(this.$route.params.id)
+          return this.$vehiclesExpensesRepository.index(this.$route.params.id)
         },
       },
 
       headers: [
         {
-          text: 'Поле',
-          value: 'verbose_name',
+          text: 'Цена',
+          value: 'price',
         },
-        // {
-        //   text: 'content_type',
-        //   value: 'content_type',
-        // },
-        // {
-        //   text: 'field',
-        //   value: 'field',
-        // },
+
         {
-          text: 'Значение',
-          value: 'value',
+          text: 'Дата',
+          value: 'date',
         },
+
         {
-          text: 'Дата изменения',
-          value: 'created_at',
+          text: 'Описание',
+          value: 'description',
+        },
+
+        {
+          text: 'Тип',
+          value: 'type',
         },
       ],
     }

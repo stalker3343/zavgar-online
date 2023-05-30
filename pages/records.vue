@@ -31,6 +31,13 @@
         </div>
       </template>
 
+      <template #tasks="{ item }">
+        <div v-for="task in item.tasks" :key="task.id">{{ task.name }}</div>
+      </template>
+      <template #issues="{ item }">
+        <div v-for="task in item.issues" :key="task.id">{{ task.summary }}</div>
+      </template>
+
       <template #records-details="{ item }">
         <div class="flagman-h3-bold mr-2">Задачи</div>
         <div v-for="task in item.tasks" :key="task.id">{{ task.name }}</div>
@@ -82,7 +89,7 @@
               />
             </form-item>
 
-            <form-item label="ПРоблемы">
+            <form-item label="Проблемы">
               <flag-select
                 v-model="item.issues"
                 multiple
@@ -154,9 +161,14 @@ export default {
           value: 'records-dates',
         },
         {
-          text: 'Детали',
-          value: 'records-details',
+          text: 'Задачи',
+          value: 'tasks',
         },
+        {
+          text: 'Проблемы',
+          value: 'issues',
+        },
+
         {
           text: 'Сумма',
           value: 'price',

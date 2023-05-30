@@ -81,11 +81,13 @@
         <v-col>
           <chart-vehikle-date
             header="Топ ТС по пробегу"
+            need-categs
             :repository="$dashboardRepository.counter"
           />
         </v-col>
         <v-col>
           <chart-vehikle-date
+            need-categs
             header="Топ ТС по тратам на топливо"
             :repository="$dashboardRepository.fueling"
           />

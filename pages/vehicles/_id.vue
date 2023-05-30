@@ -49,12 +49,26 @@
             </v-tab>
             <v-tab nuxt :to="{ name: 'vehicles-id-fueling' }">
               <!-- <v-icon left> mdi-account </v-icon> -->
-              Заправка
+              Заправки
             </v-tab>
             <v-tab nuxt :to="{ name: 'vehicles-id-history' }">
               <!-- <v-icon left> mdi-account </v-icon> -->
               История
             </v-tab>
+
+            <v-tab nuxt :to="{ name: 'vehicles-id-records' }">
+              <!-- <v-icon left> mdi-account </v-icon> -->
+              Сервисные записи
+            </v-tab>
+            <v-tab nuxt :to="{ name: 'vehicles-id-waybills' }">
+              <!-- <v-icon left> mdi-account </v-icon> -->
+              Накладные
+            </v-tab>
+            <v-tab nuxt :to="{ name: 'vehicles-id-expenses' }">
+              <!-- <v-icon left> mdi-account </v-icon> -->
+              Доп. Расходы
+            </v-tab>
+
             <!-- <v-tab nuxt>
         <v-icon left> mdi-lock </v-icon>
         Option 2

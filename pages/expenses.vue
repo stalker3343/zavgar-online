@@ -21,17 +21,6 @@
       show-edit
       :repository="$vehiclesExpensesRepository"
     >
-      <template #comment="{ item }">
-        <div class="d-flex">
-          <div class="flagman-h3-bold mr-2">Дата</div>
-          <div>{{ item.date }}</div>
-        </div>
-        <div class="d-flex">
-          <div class="flagman-h3-bold mr-2">Описание</div>
-          <div>{{ item.description }}</div>
-        </div>
-      </template>
-
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
           :item-id="editedItem"
@@ -51,31 +40,30 @@
               />
             </form-item>
 
-            <form-item label="date">
-              <date-picker v-model="item.date" placeholder="date" />
+            <form-item label="Дата">
+              <date-picker v-model="item.date" placeholder="Дата" />
             </form-item>
 
-            <form-item label="description">
+            <form-item label="Описание">
               <flag-text-field
                 v-model="item.description"
                 :height="40"
-                placeholder="description"
+                placeholder="Описание"
               />
             </form-item>
 
-            <form-item label="price">
+            <form-item label="Цена">
               <flag-text-field
                 v-model="item.price"
                 :height="40"
-                placeholder="price"
+                placeholder="Цена"
               />
             </form-item>
 
-            <form-item label="type">
+            <form-item label="Тип">
               <flag-select
                 v-model="item.type"
-                multiple
-                item-text="id"
+                item-text="name"
                 is-server-items-load
                 :repository="$expensesTypesRepository"
               />
@@ -129,17 +117,24 @@ export default {
           text: 'ТС',
           value: 'vehicle.inventory_number',
         },
+
         {
-          text: 'comment',
-          value: 'comment',
-        },
-        {
-          text: 'price',
+          text: 'Цена',
           value: 'price',
         },
 
         {
-          text: 'type',
+          text: 'Дата',
+          value: 'date',
+        },
+
+        {
+          text: 'Описание',
+          value: 'description',
+        },
+
+        {
+          text: 'Тип',
           value: 'type',
         },
       ],
@@ -148,7 +143,7 @@ export default {
         date: null,
         description: null,
         price: null,
-        type: 1,
+        type: null,
         // fuel_type: null,
         // price: null,
         // summ: null,

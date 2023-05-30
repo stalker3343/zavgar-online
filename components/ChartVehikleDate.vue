@@ -41,6 +41,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    needCategs: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -97,13 +101,14 @@ export default {
           },
         },
         dataLabels: {
-          enabled: false,
+          enabled: true,
         },
         stroke: {
           show: true,
           width: 2,
           colors: ['transparent'],
         },
+        // labels: ['2', '3', '43'],
         // xaxis: {
         //   type: 'datetime',
         // },
@@ -117,20 +122,27 @@ export default {
         fill: {
           opacity: 1,
         },
-        labels: {
-          show: true,
-        },
+        // labels: {
+        //   show: true,
+        // },
       },
     }
   },
   async fetch() {
     const arr = await this.repository({ ...this.filters, ...this.baseFilters })
+    // console.log('🚀 ~ file: ChartVehikleDate.vue:128 ~ fetch ~ arr:', arr)
     this.series = [
       {
         name: 'График',
         data: arr,
       },
     ]
+    if (this.needCategs) {
+      this.chartOptions.xaxis = {
+        categories: arr.map((el) => el.x),
+      }
+      this.series = [{ data: arr.map((el) => el.y), name: 'График' }]
+    }
   },
   computed: {
     filters() {

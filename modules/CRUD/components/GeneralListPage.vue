@@ -69,6 +69,14 @@
                     </v-icon>
                   </template>
 
+                  <template #item.tasks="{ item }">
+                    <slot name="tasks" :item="item" />
+                  </template>
+
+                  <template #item.issues="{ item }">
+                    <slot name="issues" :item="item" />
+                  </template>
+
                   <template #item.actions="{ item }">
                     <v-icon
                       v-if="showDetails"

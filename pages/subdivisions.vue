@@ -1,54 +1,72 @@
 <template>
   <div>
-    <filters-layout class="mb-3">
-      <vehicles-filter v-model="filters.vehicle" multiple />
-      <date-picker v-model="filters.date_after" placeholder="С" />
-      <date-picker v-model="filters.date_before" placeholder="По" />
-    </filters-layout>
-
-    <div class="d-flex">
-      <flag-btn color="primary" @click="onApplyFilters"> Показать </flag-btn>
-      <flag-btn @click="resetFilters"> Сброс </flag-btn>
-    </div>
     <!-- eslint-disable vue/valid-v-slot  -->
-    <!--   show-details -->
+    <!--  show-details  -->
     <general-list-page
       ref="generalListPage"
       :filters="filters"
-      delete-confirm-text="накладную"
+      delete-confirm-text="подразделение"
       :headers="headers"
       show-create
       show-edit
-      :repository="$waybillsRepository"
+      :repository="$subdivisionsRepository"
     >
+      <!-- <template #records-dates="{ item }">
+        <div class="d-flex">
+          <div class="flagman-h3-bold mr-2">Начало работ</div>
+          <div>{{ item.start_date }}</div>
+        </div>
+        <div class="d-flex">
+          <div class="flagman-h3-bold mr-2">Крайний срок</div>
+          <div>{{ item.end_date }}</div>
+        </div>
+      </template>
+
+      <template #tasks="{ item }">
+        <div v-for="task in item.tasks" :key="task.id">{{ task.name }}</div>
+      </template>
+      <template #issues="{ item }">
+        <div v-for="task in item.issues" :key="task.id">{{ task.summary }}</div>
+      </template>
+
+      <template #records-details="{ item }">
+        <div class="flagman-h3-bold mr-2">Задачи</div>
+        <div v-for="task in item.tasks" :key="task.id">{{ task.name }}</div>
+        <div class="flagman-h3-bold mt-4">Проблемы</div>
+        <div v-for="task in item.issues" :key="task.id">{{ task.summary }}</div>
+      </template> -->
+
       <template #create-edit-sheet="{ editedItem, onSuccesDataUpdate }">
         <create-edit-sheet
           :item-id="editedItem"
-          header-title="Накладные"
-          :repository="$waybillsRepository"
+          header-title="Подразделение"
+          :repository="$subdivisionsRepository"
           :get-default-item="defaultVehicle"
           @success-create="onSuccesDataUpdate"
           @success-edit="onSuccesDataUpdate"
         >
           <template #default="{ item }">
-            <form-item label="ТС">
-              <flag-select
-                v-model="item.vehicle_id"
-                item-text="inventory_number"
-                is-server-items-load
-                :repository="$vehiclesRepository"
+            <form-item label="Название">
+              <flag-text-field
+                v-model="item.name"
+                :height="40"
+                placeholder="name "
               />
             </form-item>
 
-            <form-item label="Дата">
-              <date-picker v-model="item.date" placeholder="Дата" />
+            <form-item label="Телефон">
+              <flag-text-field
+                v-model="item.phone"
+                :height="40"
+                placeholder="Телефон"
+              />
             </form-item>
 
-            <form-item label="Номер">
+            <form-item label="Начальник">
               <flag-text-field
-                v-model="item.number"
+                v-model="item.chief"
                 :height="40"
-                placeholder="Номер"
+                placeholder="Начальник"
               />
             </form-item>
           </template>
@@ -74,9 +92,8 @@ import FiltersLayout from '@/components/filters/FiltersLayout.vue'
 
 const getDefaultFilters = () => ({
   vehicle: [],
-  date_after: '',
-  date_before: '',
-  status: 'open',
+  //   date: '',
+  //   status: 'open',
 })
 export default {
   components: {
@@ -84,37 +101,35 @@ export default {
     GeneralListPage,
     FormItem,
     fueldDetails,
-    VehiclesFilter,
-    DatePicker,
-    FiltersLayout,
+    // VehiclesFilter,
+    // DatePicker,
+    // FiltersLayout,
   },
 
   data() {
     return {
       tab: null,
-
       filters: getDefaultFilters(),
 
       headers: [
         {
-          text: 'ТС',
-          value: 'vehicle.inventory_number',
+          text: 'Название',
+          value: 'name',
         },
         {
-          text: 'Номер',
-          value: 'number',
+          text: 'Телефон',
+          value: 'phone',
         },
         {
-          text: 'Дата',
-          value: 'date',
+          text: 'Начальник',
+          value: 'chief',
         },
       ],
       defaultVehicle: () => ({
-        vehicle_id: null,
-        date: null,
-        number: null,
-        images: [],
-        files: [],
+        name: '',
+        phone: '',
+        chief: '',
+
         // fuel_type: null,
         // price: null,
         // summ: null,

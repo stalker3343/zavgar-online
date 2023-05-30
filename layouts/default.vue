@@ -106,7 +106,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item exact :to="{ name: 'waybills' }">
+        <v-list-item exact :to="{ name: 'subdivisions' }">
           <v-list-item-content>
             <v-list-item-title> Подразделения </v-list-item-title>
           </v-list-item-content>

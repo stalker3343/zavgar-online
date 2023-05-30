@@ -41,11 +41,7 @@
             </form-item>
 
             <form-item label="Дата">
-              <flag-text-field
-                v-model="item.date"
-                :height="40"
-                placeholder="Дата"
-              />
+              <date-picker v-model="item.date" placeholder="Дата" />
             </form-item>
 
             <form-item label="Текущие показания счетчика">

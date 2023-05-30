@@ -72,20 +72,16 @@
               />
             </form-item>
 
-            <form-item label="Обьем(ол-во)">
+            <form-item label="Обьем(Кол-во)">
               <flag-text-field
                 v-model="item.liters"
                 :height="40"
-                placeholder="Обьем(ол-во)"
+                placeholder="Обьем(Кол-во)"
               />
             </form-item>
 
-            <form-item label="date">
-              <flag-text-field
-                v-model="item.date"
-                :height="40"
-                placeholder="date"
-              />
+            <form-item label="Дата">
+              <date-picker v-model="item.date" placeholder="Дата" />
             </form-item>
           </template>
         </create-edit-sheet>

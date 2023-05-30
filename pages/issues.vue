@@ -26,25 +26,6 @@
       show-edit
       :repository="$maintenanceIssuesRepository"
     >
-      <template #comment="{ item }">
-        <div class="d-flex">
-          <div class="flagman-h3-bold mr-2" />
-          <div>{{ item.summary }}</div>
-        </div>
-        <div class="d-flex">
-          <div class="flagman-h3-bold mr-2">Дата создания</div>
-          <div>{{ item.created_at }}</div>
-        </div>
-        <div class="d-flex">
-          <div class="flagman-h3-bold mr-2">Дата сообщения</div>
-          <div>{{ item.date }}</div>
-        </div>
-        <div class="d-flex">
-          <div class="flagman-h3-bold mr-2">Крайний срок</div>
-          <div>{{ item.due_date }}</div>
-        </div>
-      </template>
-
       <template #issues-users="{ item }">
         <div v-for="user in item.users" :key="user.id">
           {{ user.first_name }} {{ user.last_name }} {{ user.username }}
@@ -93,7 +74,7 @@
               />
             </form-item>
 
-            <form-item label="date">
+            <form-item label="Дата сообщения">
               <date-picker v-model="item.date" placeholder="Дата сообщения" />
             </form-item>
 
@@ -171,15 +152,45 @@ export default {
         { id: 'closed', name: 'Закрыта' },
       ],
       filters: getDefaultFilters(),
+      // <template #comment="{ item }">
+      //         <div class="d-flex">
+      //           <div class="flagman-h3-bold mr-2" />
+      //           <div>{{ item.summary }}</div>
+      //         </div>
+      //         <div class="d-flex">
+      //           <div class="flagman-h3-bold mr-2">Дата создания</div>
+      //           <div>{{ item.created_at }}</div>
+      //         </div>
+      //         <div class="d-flex">
+      //           <div class="flagman-h3-bold mr-2">Дата сообщения</div>
+      //           <div>{{ item.date }}</div>
+      //         </div>
+      //         <div class="d-flex">
+      //           <div class="flagman-h3-bold mr-2">Крайний срок</div>
+      //           <div>{{ item.due_date }}</div>
+      //         </div>
+      //       </template>
 
       headers: [
         {
           text: 'ТС',
           value: 'vehicle.inventory_number',
         },
+        // {
+        //   text: 'Комментарий',
+        //   value: 'comment',
+        // },
         {
-          text: 'Комментарий',
-          value: 'comment',
+          text: 'Проблема',
+          value: 'summary',
+        },
+        {
+          text: 'Дата сообщения',
+          value: 'date',
+        },
+        {
+          text: 'Крайний срок',
+          value: 'due_date',
         },
         {
           text: 'Ответсвенные лица',
