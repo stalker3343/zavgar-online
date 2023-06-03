@@ -33,6 +33,7 @@
                   :hide-default-footer="true"
                   :items="items"
                   :headers="innerActions"
+                  disable-pagination
                 >
                   <template #item.vehicle.inventory_number="{ item }">
                     <div class="d-flex align-center">

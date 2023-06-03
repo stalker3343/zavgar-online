@@ -14,28 +14,99 @@
           <v-tab nuxt :to="{ name: 'settings-expenses' }">Типы расходов </v-tab>
 
           <!-- /api/vehicles/types/ -->
-          <v-tab nuxt :to="{ name: 'inspire' }"> Типы </v-tab>
+          <v-tab
+            nuxt
+            :to="{ name: 'settings-rep', params: { rep: 'vehiclesTypes' } }"
+          >
+            Типы
+          </v-tab>
           <!-- /api/vehicles/manufacturers/ -->
-          <v-tab nuxt :to="{ name: 'inspire' }"> завод изготовитель </v-tab>
+          <v-tab
+            nuxt
+            :to="{
+              name: 'settings-rep',
+              params: { rep: 'vehiclesManufacturers' },
+            }"
+          >
+            завод изготовитель
+          </v-tab>
 
           <!-- /api/vehicles/sources/ -->
-          <v-tab nuxt :to="{ name: 'inspire' }"> Организ. выдавш. наряд </v-tab>
+          <v-tab
+            nuxt
+            :to="{
+              name: 'settings-rep',
+              params: { rep: 'vehiclesSources' },
+            }"
+          >
+            Организ. выдавш. наряд
+          </v-tab>
           <!-- /api/vehicles/warehouses/ -->
-          <v-tab nuxt :to="{ name: 'inspire' }"> Склады </v-tab>
+          <v-tab
+            nuxt
+            :to="{
+              name: 'settings-rep',
+              params: { rep: 'vehiclesWarehouses' },
+            }"
+          >
+            Склады
+          </v-tab>
           <!-- /api/vehicles/bodies/ -->
-          <v-tab nuxt :to="{ name: 'inspire' }"> Типы кузова </v-tab>
+          <v-tab
+            nuxt
+            :to="{
+              name: 'settings-rep',
+              params: { rep: 'vehiclesBodies' },
+            }"
+          >
+            Типы кузова
+          </v-tab>
           <!-- /api/vehicles/classes/ -->
-          <v-tab nuxt :to="{ name: 'inspire' }"> Классы ТС </v-tab>
+          <v-tab
+            nuxt
+            :to="{
+              name: 'settings-rep',
+              params: { rep: 'vehiclesClasses' },
+            }"
+          >
+            Классы ТС
+          </v-tab>
 
           <!-- /api/vehicles/colors/-->
-          <v-tab nuxt :to="{ name: 'inspire' }"> Цвета ТС </v-tab>
+          <v-tab
+            nuxt
+            :to="{
+              name: 'settings-rep',
+              params: { rep: 'vehiclesColors' },
+            }"
+          >
+            Цвета ТС
+          </v-tab>
 
           <!-- /api/vehicles/services/ -->
-          <v-tab nuxt :to="{ name: 'inspire' }"> Службы эксп. ТС </v-tab>
+          <v-tab
+            nuxt
+            :to="{
+              name: 'settings-rep',
+              params: { rep: 'vehiclesServices' },
+            }"
+          >
+            Службы эксп. ТС
+          </v-tab>
+
+          <v-tab
+            nuxt
+            :to="{
+              name: 'settings-rep',
+              params: { rep: 'vehiclesGroups' },
+            }"
+          >
+            Штатные группы
+          </v-tab>
         </v-tabs>
       </v-col>
       <v-col cols="9">
-        <nuxt-child />
+        <nuxt-child :key="$route.path" />
       </v-col>
     </v-row>
   </div>

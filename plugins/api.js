@@ -150,6 +150,39 @@ export default function ({ $axios }, inject) {
     },
   })
 
+  inject('vehiclesTypesRepository', {
+    ...repositoryWithAxios('/api/vehicles/types/'),
+  })
+  inject('vehiclesManufacturersRepository', {
+    ...repositoryWithAxios('/api/vehicles/manufacturers/'),
+  })
+  inject('vehiclesSourcesRepository', {
+    ...repositoryWithAxios('/api/vehicles/sources/'),
+  })
+
+  inject('vehiclesWarehousesRepository', {
+    ...repositoryWithAxios('/api/vehicles/warehouses/'),
+  })
+
+  inject('vehiclesBodiesRepository', {
+    ...repositoryWithAxios('/api/vehicles/bodies/'),
+  })
+
+  inject('vehiclesClassesRepository', {
+    ...repositoryWithAxios('/api/vehicles/classes/'),
+  })
+  inject('vehiclesColorsRepository', {
+    ...repositoryWithAxios('/api/vehicles/colors/'),
+  })
+
+  inject('vehiclesServicesRepository', {
+    ...repositoryWithAxios('/api/vehicles/services/'),
+  })
+
+  inject('vehiclesGroupsRepository', {
+    ...repositoryWithAxios('/api/vehicles/groups/'),
+  })
+
   inject('maintenanceIssuesRepository', {
     ...repositoryWithAxios('/api/maintenance/issues/'),
   })
@@ -351,7 +384,7 @@ export default function ({ $axios }, inject) {
   })
 
   inject('subdivisionsRepository', {
-    ...repositoryWithAxios('api/vehicles/subdivisions'),
+    ...repositoryWithAxios('api/vehicles/subdivisions/'),
 
     // index(payload) {
     //   return $axios.$post(`/api/api/history/`, payload)
